@@ -66,7 +66,8 @@ Contributions are welcome. Open an issue or submit a pull request to help improv
 
 ## 👤 Author
 
-Qubi Software  
-Founders: Muhammet Ensar Beyazkılınç & Omer Faruk Beyazkılınç  
-GitHub: [@QubiSoftware](https://github.com/QubiSoftware)
-Website: [qubisoftware.net](https://qubisoftware.net)
+**Qubi Software**
+
+* **Founders:** Muhammet Ensar Beyazkılınç & Ömer Faruk Beyazkılınç
+* **GitHub:** [@QubiSoftware](https://github.com/QubiSoftware)
+* **Website:** [qubisoftware.net](https://qubisoftware.net)
