@@ -1,0 +1,84 @@
+/**
+ * CodeGlass Visual Theme
+ * Matrix-inspired dark mode for code flow visualization.
+ */
+
+:root {
+    --bg-color: #0d0d0d;
+    --node-border: #00ff41;      /* Matrix Green */
+    --node-bg: rgba(0, 255, 65, 0.05);
+    --text-color: #00ff41;
+    --condition-color: #ffcc00;  /* Warning Yellow for Ifs */
+    --start-color: #00ccff;      /* Cyan for Entry Points */
+    --loop-color: #ff00ff;       /* Magenta for Loops */
+    --line-color: #444444;       /* Subtle Grey for Connections */
+}
+
+#codeglass-app {
+    background-color: var(--bg-color);
+    font-family: 'Courier New', Courier, monospace;
+    overflow-y: auto;   /* allow vertical scroll */
+    overflow-x: hidden;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+}
+
+/* Base Node Styling */
+.node {
+    position: absolute;
+    border: 2px solid var(--node-border);
+    background-color: var(--node-bg);
+    color: var(--text-color);
+    padding: 12px 20px;
+    border-radius: 4px;
+    min-width: 160px;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(0, 255, 65, 0.1);
+    z-index: 2;
+    font-weight: bold;
+    transition: transform 0.2s ease;
+}
+
+.node:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+}
+
+/* Node Variants */
+.node.condition { 
+    border-color: var(--condition-color); 
+    color: var(--condition-color);
+    border-radius: 20px; /* Rounded diamond-ish look */
+}
+
+.node.start { 
+    border-color: var(--start-color); 
+    color: var(--start-color);
+    text-transform: uppercase;
+}
+
+.node.loop {
+    border-color: var(--loop-color);
+    color: var(--loop-color);
+    border-style: dashed;
+}
+
+/* Connection Layer */
+#connection-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none; /* Allows clicking nodes through the SVG */
+}
+
+.flow-line {
+    fill: none;
+    stroke: var(--line-color);
+    stroke-width: 2.5;
+    stroke-linecap: round;
+}

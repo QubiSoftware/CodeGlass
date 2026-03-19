@@ -1,0 +1,22 @@
+radon>=6.0.1
+fastapi>=0.109.0
+uvicorn[standard]>=0.27.0
+# ==========================================
+# CodeGlass - Project Dependencies
+# ==========================================
+
+# --- Core Engine ---
+# Built-in: 'ast', 'json', 'os' (No external install required)
+
+# --- Web Bridge & API ---
+# Used for serving the analysis results to OmniConsole or a Web Browser
+fastapi==0.109.0
+uvicorn==0.27.0
+
+# --- Metrics & Analysis ---
+# Optional: Used for calculating Cyclomatic Complexity and code maintainability
+radon==6.0.1
+
+# --- Terminal Enhancement ---
+# Provides colored logging and better visual output in the console
+colorama==0.4.6

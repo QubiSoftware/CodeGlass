@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CodeGlass Visualizer</title>
+    <link rel="stylesheet" href="css/codeglass.css">
+</head>
+<body>
+    <div id="codeglass-app">
+        <div id="canvas-container">
+            <svg id="connection-layer">
+                <defs>
+                    <marker id="arrowhead" markerWidth="10" markerHeight="7" 
+                            refX="10" refY="3.5" orient="auto">
+                        <polygon points="0 0, 10 3.5, 0 7" fill="#444" />
+                    </marker>
+                </defs>
+            </svg>
+            <div id="node-layer"></div>
+        </div>
+    </div>
+
+    <script src="js/flow_logic.js"></script>
+    <script src="js/renderer.js"></script>
+    
+    <script>
+        const renderer = new CodeGlassRenderer('node-layer');
+        const PYTHON_FILE = 'examples/simple_if.py'; // default target for hot reload
+        const POLL_INTERVAL_MS = 2000;
+
+        async function fetchGraph() {
+            try {
+                const response = await fetch('http://127.0.0.1:8000/analyze', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ path: PYTHON_FILE })
+                });
+
+                if (!response.ok) {
+                    console.warn('Analyzer error:', await response.text());
+                    return;
+                }
+
+                const payload = await response.json();
+                if (!payload.graph) return;
+
+                renderer.render(payload.graph);
+            } catch (err) {
+                console.warn('Hot reload fetch failed:', err);
+            }
+        }
+
+        // Initial load + periodic hot reload
+        fetchGraph();
+        setInterval(fetchGraph, POLL_INTERVAL_MS);
+    </script>
+</body>
+</html>
